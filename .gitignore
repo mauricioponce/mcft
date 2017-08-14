@@ -1,0 +1,8 @@
+.virtualenv/
+.vscode/.ropeproject/
+cover/
+.coverage
+*.pyc
+*.sw[po]
+*.DS_store
+.data/
