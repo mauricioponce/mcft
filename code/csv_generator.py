@@ -11,14 +11,13 @@ logger = logging.getLogger(')(')
 
 polo = Poloniex()
 
-def get_data(currency_pair, start_date, end_date):
-    period = 1800 # in seconds
+def get_data(currency_pair, start_date, end_date, period):
     chart_data = polo.returnChartData(currency_pair, period, start_date, end_date)
     return chart_data
 
 
-def generate_csv(currency_pair, start_date, end_date):
-    data = get_data(currency_pair, start_date, end_date)
+def generate_csv(currency_pair, start_date, end_date, period=1800):
+    data = get_data(currency_pair, start_date, end_date, period)
     filename = currency_pair + '.csv'
     logger.debug(filename)
 
