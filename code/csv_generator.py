@@ -40,8 +40,12 @@ def get_formatted_date(my_date):
 if __name__ == '__main__':
     end_date = datetime.datetime.now()
     start_date = end_date + datetime.timedelta(days=-10)
-    logger.debug(sys.argv)
-    currency_pair = sys.argv[1]
+    currencies = []
+    if len(sys.argv) > 1:
+        currencies.append(sys.argv[1])
+    else:
+        currencies.extend(['BTC_VIA', 'BTC_LTC'])
 
-    generate_csv(currency_pair, start_date, end_date)
+    for currency_pair in currencies:
+        generate_csv(currency_pair, start_date, end_date)
     logger.debug('----------------------')
