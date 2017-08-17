@@ -5,6 +5,10 @@ import datetime
 import time
 from decorators import log_ts
 
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(')(')
 
