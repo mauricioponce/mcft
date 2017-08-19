@@ -12,7 +12,7 @@ logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(')(')
 
 def test_run(start_date, end_date):
-    dates = pd.date_range(start_date, end_date)
+    dates = pd.date_range(start_date, end_date, freq='30min')
 
     currencies = ['BTC_VIA', 'BTC_LTC']
 
