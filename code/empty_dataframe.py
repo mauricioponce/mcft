@@ -25,7 +25,10 @@ def test_run(start_date, end_date):
 
     # global_statistics(df)
 
-    plot_bollinger_bands(df, 'BTC_LTC')
+    # plot_bollinger_bands(df, 'BTC_LTC')
+
+    daily_returns = compute_daily_return(df)
+    plot_data(daily_returns, title="Daily returns", ylabel="Daily returns")
 
 
 def get_bollinger_bands(rm, rstd):
@@ -54,6 +57,12 @@ def get_data(currencies, dates):
     return df1
 
 
+def compute_daily_return(df):
+    daily_returns = (df/ df.shift(1)) - 1
+    daily_returns.ix[0, :] = 0
+    return daily_returns
+
+
 def plot_bollinger_bands(df, currency):
     values = df[currency]
     window = 20
@@ -77,11 +86,11 @@ def plot_bollinger_bands(df, currency):
     plt.savefig('bbands.jpg')
 
 
-def plot_data(df, title='prices'):
+def plot_data(df, title='prices', ylabel='Price'):
     ax = df.plot(title=title, fontsize=2)
 
     ax.set_xlabel('Date')
-    ax.set_ylabel('Price')
+    ax.set_ylabel(ylabel)
     plt.savefig('foo.jpg')
 
 def get_formatted_date(my_date):
