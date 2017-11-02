@@ -9,6 +9,8 @@ import csv
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(')(')
 
+base_path = '../notebooks/data/'
+
 polo = Poloniex()
 
 def get_data(currency_pair, start_date, end_date, period):
@@ -18,7 +20,7 @@ def get_data(currency_pair, start_date, end_date, period):
 
 def generate_csv(currency_pair, start_date, end_date, period=1800):
     data = get_data(currency_pair, start_date, end_date, period)
-    filename = currency_pair + '.csv'
+    filename = base_path + currency_pair + '.csv'
     logger.debug(filename)
 
     with open(filename, 'w') as fp:
@@ -39,12 +41,12 @@ def get_formatted_date(my_date):
 
 if __name__ == '__main__':
     end_date = datetime.datetime.now()
-    start_date = end_date + datetime.timedelta(days=-10)
+    start_date = end_date + datetime.timedelta(days=-30)
     currencies = []
     if len(sys.argv) > 1:
         currencies.append(sys.argv[1])
     else:
-        currencies.extend(['BTC_VIA', 'BTC_LTC'])
+        currencies.extend(['BTC_VIA', 'BTC_LTC', 'BTC_PINK'])
 
     for currency_pair in currencies:
         generate_csv(currency_pair, start_date, end_date)
