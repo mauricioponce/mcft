@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  p_anaconda3:
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile
+    ports:
+      - 8888:8888
+    image: anaconda-with-steroids
+    volumes:
+     - "../notebooks:/opt/notebooks"
+     - "../util:/opt/notebooks/util"
+    container_name: "anaconda-with-steroids"

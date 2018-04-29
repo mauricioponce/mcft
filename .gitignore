@@ -6,3 +6,5 @@ cover/
 *.sw[po]
 *.DS_store
 .data/
+tb
+data/
